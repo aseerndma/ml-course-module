@@ -1,4 +1,4 @@
-# Titanic Data Exploration — Module 1
+# ML Course — Module 1 (Titanic Analysis)
 
 Data exploration of the Titanic dataset using pandas and matplotlib.
 
