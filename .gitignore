@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 *.joblib
 report.md
+git add src/train.py .github/ .gitignore
