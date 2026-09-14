@@ -1,0 +1,35 @@
+name: ML CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test-and-train:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -v
+
+      - name: Train the model
+        run: python src/train.py --config configs/config.yaml
+
+      - name: Upload model and report
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-and-report
+          path: |
+            outputs/titanic_pipeline.joblib
+            outputs/report.md
