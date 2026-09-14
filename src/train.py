@@ -80,3 +80,26 @@ with open("outputs/report.md", "w") as f:
 print("Metrics:", metrics)
 print("Model saved to outputs/titanic_pipeline.joblib")
 print("Report saved to outputs/report.md")
+# 10. Append this run to an experiment log
+import csv
+import os
+
+log_path = "outputs/experiments.csv"
+log_exists = os.path.exists(log_path)
+
+with open(log_path, "a", newline="") as f:
+    writer = csv.writer(f)
+    if not log_exists:
+        writer.writerow(["timestamp", "test_size", "random_state",
+                         "accuracy", "precision", "recall", "f1"])
+    writer.writerow([
+        datetime.now().strftime("%Y-%m-%d %H:%M"),
+        config["test_size"],
+        config["random_state"],
+        metrics["accuracy"],
+        metrics["precision"],
+        metrics["recall"],
+        metrics["f1"],
+    ])
+
+print("Experiment logged to outputs/experiments.csv")
