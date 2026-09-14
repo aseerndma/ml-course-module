@@ -1,0 +1,4 @@
+# Project settings
+data_url: "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv"
+test_size: 0.2
+random_state: 42
